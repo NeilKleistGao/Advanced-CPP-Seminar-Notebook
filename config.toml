@@ -1,4 +1,4 @@
-baseurl = "acppsn.netlify.app"
+baseurl = "https://acppsn.netlify.app/"
 languageCode = "zh-cn"
 title = "Advanced C++ Seminar Notebook"
 copyright = "&copy; Copyright notice"

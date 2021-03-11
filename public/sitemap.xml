@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>acppsn.netlify.app/about/</loc>
+    <loc>https://acppsn.netlify.app/about/</loc>
     <lastmod>2021-03-11T22:38:32+08:00</lastmod>
   </url><url>
-    <loc>acppsn.netlify.app/</loc>
+    <loc>https://acppsn.netlify.app/</loc>
   </url><url>
-    <loc>acppsn.netlify.app/categories/</loc>
+    <loc>https://acppsn.netlify.app/categories/</loc>
   </url><url>
-    <loc>acppsn.netlify.app/tags/</loc>
+    <loc>https://acppsn.netlify.app/tags/</loc>
   </url>
 </urlset>
