@@ -1,0 +1,13 @@
+baseurl = "acppsn.netlify.app"
+languageCode = "zh-cn"
+title = "Advanced C++ Seminar Notebook"
+copyright = "&copy; Copyright notice"
+
+
+[params]
+    github = "NeilKleistGao"
+    author = "Advanced C++ Seminar"
+    avatar = "/avatar.jpg"
+    bio = "XD"
+    subtitle = "当你拿着C++这把锤子，看什么都像钉子"
+    themecolor = "#66CCFF" # Defines the tab color in Chrome for Android.
