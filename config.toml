@@ -1,7 +1,7 @@
 baseurl = "https://acppsn.netlify.app/"
 languageCode = "zh-cn"
 title = "Advanced C++ Seminar Notebook"
-copyright = "&copy; Copyright notice"
+copyright = "&copy; CC0-1.0 License"
 
 
 [params]
