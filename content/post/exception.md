@@ -123,13 +123,97 @@ extern "C" void __stdcall _CxxThrowException(
 );
 ```
 
-其中第一个参数是产生异常的对象，第二个参数是处理异常所需要的信息。**不要直接调用该函数，该函数应该交由编译器处理。**
+其中第一个参数是产生异常的对象，第二个参数是处理异常所需要的信息。由于该函数使用`__srdcall`修饰，` __TI1?AVexception@std@@`对应`_ThrowInfo`类型指针。
 
-这个函数真正意义上“抛出了一个异常”。如果该异常不被捕获，将会导致程序的崩溃；如果程序顺利执行完毕没有触发异常，一个`jmp`指令将会被用于跳过`catch`部分。
+**不要直接调用该函数，该函数应该交由编译器处理。**
 
-### Structured Exception Handling
-如何在抛出异常以后正确捕获异常？Windows从很早以前的版本起就提供了结构化异常处理(Structured Exception Handling, SEH)来完成这项工作。
+这个函数真正意义上“抛出了一个异常”。该函数将会创建一个异常记录（exception record），并要求运行时环境处理该异常。如果程序顺利执行完毕没有触发异常，一个`jmp`指令将会被用于跳过`catch`部分。
 
+由于`__CxxThrowException`无法查阅到其实现方式，只能看到反汇编的结果，难以阅读，我们尝试通过使用IDA来定位`catch`语句被引用的地方：
+
+![](https://i.loli.net/2021/03/25/mFoSN5fU6g7Kiza.png)
+
+我们可以看到编译器保存了函数的相关信息（FuncInfo）结构体：其中包含了两个回退（Unwind）结构体（下文中会再提到），以及一个HandlerType，该结构体中保存有catch对应的偏移地址以及`exception`的虚表指针（`stru_41C138`中，在`_ThrowInfo`也包含有指向该结构体的指针）。
+
+FuncInfo的定义如下（已删除宏和注释，完整见`ehdata.h`）：
+```c++
+typedef const struct _s_FuncInfo
+{
+	unsigned int		magicNumber:29;		
+	unsigned int		bbtFlags:3;			
+	__ehstate_t			maxState;			
+	UnwindMapEntry*		pUnwindMap; // 回退表
+	unsigned int		nTryBlocks;
+	TryBlockMapEntry*	pTryBlockMap; // try块表
+	unsigned int		nIPMapEntries;
+	void*				pIPtoStateMap;
+	ESTypeList*			pESTypeList;
+	int					EHFlags;
+} FuncInfo;
+```
+
+我们跳过`TryBlockMapEntry`（同样在`ehdata.h`中），直接来看`HandlerType`：
+```c++
+typedef const struct _s_HandlerType {
+	unsigned int	adjectives;
+	TypeDescriptor*	pType; // 类型描述符，根据之前逆向的结果，其中包含有虚表指针
+	ptrdiff_t		dispCatchObj;
+	void *			addressOfHandler; // catch地址
+} HandlerType;
+```
+
+`__CxxThrowException`首先会检索`FuncInfo`，找到对应的try entry，并根据try entry 结构后附带的catch entry逐一匹配，找到合适的处理代码。如果无法找到，则需要涉及到栈回退。
+
+### Stack Unwind（栈回退）
+如果`exception`无法被捕获，运行时环境需要跳转到更高一层的上下文（higher execution context）中寻找`catch`块；如果程序完全没有理会该`exception`，则程序将会调用`terminate`函数自动终止。
+
+关键问题就在于：我们要如何完成“跳转”操作？考虑下面的这段代码：
+```c++
+#include <iostream>
+#include <exception>
+
+struct Foo
+{
+	~Foo() {
+		std::cout << "rua" << std::endl;
+	}
+};
+
+void foo() {
+	Foo f;
+	throw std::exception("test");
+}
+
+int main() {
+	
+	try {
+		foo();
+	}
+	catch (std::exception e) {
+		// ...
+	}
+	
+	return 0;
+}
+```
+
+我们在`foo`函数中抛出一个异常，我们该如何在`main`中将其捕获？
+
+接着上一节的内容，我们来查看回退相关的结构体：
+```c++
+typedef const struct _s_UnwindMapEntry {
+	__ehstate_t	toState;
+	void		(__cdecl * action)(void);
+} UnwindMapEntry;
+```
+
+该结构体中包含有一个`funclet`，当异常被抛出而找不到`catch`时，程序会自动调用该`funclet`，它将完成栈回退的计算，以及必要的析构操作等。如果`toState`值为`-1`，则代表当前函数处在最上层。
+
+我们可以使用IDA查看`foo`函数的回退`funclet`：
+
+![](https://i.loli.net/2021/03/25/krmiUqD4boXZjEK.png)
+
+可以看到其的确调用了`Foo`结构体的析构函数。由于`foo`函数没有参数，所以不需要进行额外的调整。
 
 ---
 ## gerayking的部分（自行修改标题）
