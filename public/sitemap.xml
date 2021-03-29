@@ -2,10 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://acppsn.netlify.app/</loc>
+    <lastmod>2021-03-13T11:56:19+08:00</lastmod>
+  </url><url>
+    <loc>https://acppsn.netlify.app/post/</loc>
+    <lastmod>2021-03-13T11:56:19+08:00</lastmod>
+  </url><url>
+    <loc>https://acppsn.netlify.app/post/exception/</loc>
+    <lastmod>2021-03-13T11:56:19+08:00</lastmod>
+  </url><url>
     <loc>https://acppsn.netlify.app/about/</loc>
     <lastmod>2021-03-11T22:38:32+08:00</lastmod>
-  </url><url>
-    <loc>https://acppsn.netlify.app/</loc>
   </url><url>
     <loc>https://acppsn.netlify.app/categories/</loc>
   </url><url>

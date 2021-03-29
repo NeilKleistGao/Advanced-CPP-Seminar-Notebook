@@ -3,22 +3,19 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content=" About &middot;  Advanced C&#43;&#43; Seminar Notebook" />
+  <meta property="og:title" content=" Posts &middot;  Advanced C&#43;&#43; Seminar Notebook" />
   
   <meta name="theme-color" content="#66CCFF" />
  
   <meta property="og:site_name" content="Advanced C&#43;&#43; Seminar Notebook" />
-  <meta property="og:url" content="https://acppsn.netlify.app/about/" />
+  <meta property="og:url" content="https://acppsn.netlify.app/post/" />
   
   
-  <meta property="og:type" content="article" />
-  
-  <meta property="og:article:published_time" content="2021-03-11T22:38:32&#43;08:00" />
-  
+  <meta property="og:type" content="website" />
   
 
   <title>
-     About &middot;  Advanced C&#43;&#43; Seminar Notebook
+     Posts &middot;  Advanced C&#43;&#43; Seminar Notebook
   </title>
 
   <link rel="stylesheet" href="https://acppsn.netlify.app/css/bootstrap.min.css" />
@@ -65,79 +62,47 @@
       </a>
       
       
+      <a href="https://acppsn.netlify.app/post/index.xml" class="btn-header btn-subscribe hidden-xs">
+        <i class="fa fa-rss" aria-hidden="true"></i>
+        &nbsp;Subscribe
+      </a>
+      
     </section>
   </header>
   <main class="container">
 
-
-<article>
+<section class="article-list">
+  <h1>Posts</h1>
+  
+  <hr/>
+  <article>
   <header>
-    <h1 class="text-primary">About</h1>
+    <h2><a href="https://acppsn.netlify.app/post/exception/">专题1：Exception</a></h2>
     <div class="post-meta clearfix">
-    
       <div class="post-date pull-left">
         Posted on
-        <time datetime="2021-03-11T22:38:32&#43;08:00">
-          Mar 11, 2021
+        <time datetime="2021-03-13T11:56:19&#43;08:00">
+          Mar 13, 2021
         </time>
-      </div>
-    
-      <div class="pull-right">
-        
       </div>
     </div>
   </header>
-  <section>
-    <h2 id="什么是advanced-c-seminar-notebook">什么是Advanced C++ Seminar Notebook？</h2>
-<p>Advanced C++ Seminar Notebook（高级C++研讨会笔记），由C++研讨会成员创建，旨在记录研讨会成员所学习到的高级C++知识。</p>
-<h2 id="研讨会学习哪些内容">研讨会学习哪些内容？</h2>
-<ul>
-<li>语言特性</li>
-<li>标准文档</li>
-<li>源码剖析</li>
-<li>实现机制</li>
-<li>编译器差异</li>
-<li>代码规范</li>
-<li>etc.</li>
-</ul>
-<h2 id="研讨会参考资料">研讨会参考资料</h2>
-<ul>
-<li>《C++ Templates》 戴维·范德沃德，尼古拉·约祖蒂斯，道格拉斯·格雷戈 著</li>
-<li>《STL源码剖析》 侯捷 著</li>
-</ul>
-
-  </section>
+  <div>
+    前言  C++ Exception实现机制 作者：NeilKleistGao
+ 环境申明  操作系统: Windows10 IDE: Visual Studio 2019 编译器：MSVC 19 C++标准：C++17 优化选项：无优化  std::exception实现 MSVC下std::exception的实现在头文件vcruntime_exception.h中：
+class exception { public: exception() noexcept : _Data() { } explicit exception(char const* const _Message) noexcept : _Data() { __std_exception_data _InitData = { _Message, true }; __std_exception_copy(&amp;_InitData, &amp;_Data); } exception(char const* const _Message, int) noexcept : _Data() { _Data._What = _Message; } exception(exception const&amp; _Other) noexcept : _Data() { __std_exception_copy(&amp;_Other.
+  </div>
+  
   <footer>
-    
-    
-    
-    <section class="author-info row">
-      <div class="author-avatar col-md-2">
-        
-        <img alt="Author Avatar" src="/avatar.jpg" />
-        
-      </div>
-      <div class="author-meta col-md-6">
-        
-        <h1 class="author-name text-primary">Advanced C&#43;&#43; Seminar</h1>
-        
-        
-        <div class="author-bio">XD</div>
-        
-      </div>
-      
-    </section>
     <ul class="pager">
-      
-      <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span>Older</a></li>
-      
-      
-      <li class="next"><a href="https://acppsn.netlify.app/post/exception/">Newer<span aria-hidden="true">&rarr;</span></a></li>
-      
+      <li class="next"><a href="https://acppsn.netlify.app/post/exception/">Read more <span aria-hidden="true">&raquo;</span></a></li>
     </ul>
   </footer>
+  
 </article>
 
+  
+</section>
   </main>
   <footer class="container global-footer">
     <div class="copyright-note pull-left">
@@ -172,4 +137,5 @@
   
 </body>
 </html>
+
 

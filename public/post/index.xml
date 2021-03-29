@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Advanced C&#43;&#43; Seminar Notebook</title>
-    <link>https://acppsn.netlify.app/</link>
-    <description>Recent content on Advanced C&#43;&#43; Seminar Notebook</description>
+    <title>Posts on Advanced C&#43;&#43; Seminar Notebook</title>
+    <link>https://acppsn.netlify.app/post/</link>
+    <description>Recent content in Posts on Advanced C&#43;&#43; Seminar Notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>&amp;copy; CC0-1.0 License</copyright>
-    <lastBuildDate>Sat, 13 Mar 2021 11:56:19 +0800</lastBuildDate><atom:link href="https://acppsn.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 Mar 2021 11:56:19 +0800</lastBuildDate><atom:link href="https://acppsn.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>专题1：Exception</title>
       <link>https://acppsn.netlify.app/post/exception/</link>
@@ -17,16 +17,6 @@
       <description>前言  C++ Exception实现机制 作者：NeilKleistGao
  环境申明  操作系统: Windows10 IDE: Visual Studio 2019 编译器：MSVC 19 C++标准：C++17 优化选项：无优化  std::exception实现 MSVC下std::exception的实现在头文件vcruntime_exception.h中：
 class exception { public: exception() noexcept : _Data() { } explicit exception(char const* const _Message) noexcept : _Data() { __std_exception_data _InitData = { _Message, true }; __std_exception_copy(&amp;amp;_InitData, &amp;amp;_Data); } exception(char const* const _Message, int) noexcept : _Data() { _Data._What = _Message; } exception(exception const&amp;amp; _Other) noexcept : _Data() { __std_exception_copy(&amp;amp;_Other.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://acppsn.netlify.app/about/</link>
-      <pubDate>Thu, 11 Mar 2021 22:38:32 +0800</pubDate>
-      
-      <guid>https://acppsn.netlify.app/about/</guid>
-      <description>什么是Advanced C++ Seminar Notebook？ Advanced C++ Seminar Notebook（高级C++研讨会笔记），由C++研讨会成员创建，旨在记录研讨会成员所学习到的高级C++知识。
-研讨会学习哪些内容？  语言特性 标准文档 源码剖析 实现机制 编译器差异 代码规范 etc.  研讨会参考资料  《C++ Templates》 戴维·范德沃德，尼古拉·约祖蒂斯，道格拉斯·格雷戈 著 《STL源码剖析》 侯捷 著  </description>
     </item>
     
   </channel>
