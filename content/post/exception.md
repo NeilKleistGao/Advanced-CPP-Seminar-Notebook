@@ -1,7 +1,7 @@
 ---
 title: "专题1：Exception"
 date: 2021-03-13T11:56:19+08:00
-draft: true
+draft: false
 ---
 
 ## 前言
@@ -216,12 +216,10 @@ typedef const struct _s_UnwindMapEntry {
 可以看到其的确调用了`Foo`结构体的析构函数。由于`foo`函数没有参数，所以不需要进行额外的调整。
 
 ---
-## gerayking的部分（自行修改标题）
+## 异常默认处理情况
 作者：[gerayking](https://github.com/gerayking)
 
----
-
-### 	异常默认处理情况
+---	
 
 当发生异常当未有异常捕捉进行处理时，在默认情况下，这将导致程序异常终止，这种情况成为**意外异常**，
 
@@ -271,30 +269,11 @@ int main (void) {
 }
 ```
 
-
-
 ---
-## lannester666的部分（自行修改标题）
-作者：[lannester666](https://github.com/lannester666)
-
----
-
-请在此处编写。
-
----
-## morningstarwang的部分（自行修改标题）
-作者：[morningstarwang](https://github.com/morningstarwang)
-
----
-
-请在此处编写。
-
----
-## PtCu的部分（自行修改标题）
+## 通过值抛出，通过引用捕获
 作者：[PtCu](https://github.com/PtCu)
 
 ---
-### 通过值抛出，通过引用捕获
 
 —— Excerpt from 《 C++ Coding Standards: 101 Rules,  guidelines and best practices 》
 

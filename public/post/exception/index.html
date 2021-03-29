@@ -257,10 +257,9 @@ call        __CxxThrowException@8
 <p><img src="https://i.loli.net/2021/03/25/krmiUqD4boXZjEK.png" alt=""></p>
 <p>可以看到其的确调用了<code>Foo</code>结构体的析构函数。由于<code>foo</code>函数没有参数，所以不需要进行额外的调整。</p>
 <hr>
-<h2 id="gerayking的部分自行修改标题">gerayking的部分（自行修改标题）</h2>
+<h2 id="异常默认处理情况">异常默认处理情况</h2>
 <p>作者：<a href="https://github.com/gerayking">gerayking</a></p>
 <hr>
-<h3 id="异常默认处理情况">异常默认处理情况</h3>
 <p>当发生异常当未有异常捕捉进行处理时，在默认情况下，这将导致程序异常终止，这种情况成为<strong>意外异常</strong>，</p>
 <p>这种情况下，程序将会调用terminate()，默认情况下，terminate()会调用abort()函数。</p>
 <p>而在大多数情况下，项目如果因为出现异常而宕机是很危险的行为，所以可以直接修改terminate()函数进行意外异常的根本处理.</p>
@@ -296,20 +295,9 @@ This function is provided so that the terminate handler can be explicitly called
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><hr>
-<h2 id="lannester666的部分自行修改标题">lannester666的部分（自行修改标题）</h2>
-<p>作者：<a href="https://github.com/lannester666">lannester666</a></p>
-<hr>
-<p>请在此处编写。</p>
-<hr>
-<h2 id="morningstarwang的部分自行修改标题">morningstarwang的部分（自行修改标题）</h2>
-<p>作者：<a href="https://github.com/morningstarwang">morningstarwang</a></p>
-<hr>
-<p>请在此处编写。</p>
-<hr>
-<h2 id="ptcu的部分自行修改标题">PtCu的部分（自行修改标题）</h2>
+<h2 id="通过值抛出通过引用捕获">通过值抛出，通过引用捕获</h2>
 <p>作者：<a href="https://github.com/PtCu">PtCu</a></p>
 <hr>
-<h3 id="通过值抛出通过引用捕获">通过值抛出，通过引用捕获</h3>
 <p>—— Excerpt from 《 C++ Coding Standards: 101 Rules,  guidelines and best practices 》</p>
 <p><strong>摘要</strong></p>
 <p>​	学习正确捕获 (catch)：按值（而不是指针）抛出异常，并按引用（通常为const的引用）捕获异常，这是与异常语义配合最佳的组合。当抛出相同的异常时，应该优先使用throw;, 避免使用throw e;</p>
